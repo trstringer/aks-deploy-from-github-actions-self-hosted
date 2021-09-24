@@ -107,7 +107,10 @@ SSH into the runner VM. I recommend creating a system user for the runner proces
 
 ```
 $ sudo adduser githubrunner1 --system --group
+$ sudo usermod -aG sudo githubrunner1
 ```
+
+Ensure that the `sudo` group includes `NOPASSWD` so that the runner isn't prompted for a password when running `sudo` (you can modify `/etc/sudoers` with `visudo`).
 
 Follow the intructions on the **Create self-managed runner** page in the GitHub repository (mkdir, curl, tar, etc.). Ensure that you're running these commands in the home dir of the new system user (`/home/githubrunner1`) under the proper security context: `sudo -u githubrunner1 <github_instructions_command>`.
 
