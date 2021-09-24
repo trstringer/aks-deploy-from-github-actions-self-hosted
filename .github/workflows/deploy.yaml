@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
     name: Deploy application
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -17,9 +17,6 @@ jobs:
         run: make build
       - name: Login to container registry
         env:
-          SERVICE_PRINCIPAL_APP_ID: ${{ secrets.SERVICE_PRINCIPAL_APP_ID }}
-          SERVICE_PRINCIPAL_SECRET: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
-          SERVICE_PRINCIPAL_TENANT: ${{ secrets.SERVICE_PRINCIPAL_TENANT }}
           ACR_NAME: ${{ secrets.ACR_NAME }}
         run: make registry-login
       - name: Push image
