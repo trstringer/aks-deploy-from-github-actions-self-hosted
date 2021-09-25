@@ -1,4 +1,4 @@
-# Deploy to AKS from GitHub Actions
+# Deploy to AKS from GitHub Actions with a self-hosted runner
 
 ## AKS Setup
 
