@@ -118,3 +118,20 @@ githubrunner1 ALL = NOPASSWD:/usr/bin/apt-get, /usr/sbin/usermod, /usr/bin/gpg, 
 Follow the intructions on the **Create self-managed runner** page in the GitHub repository (mkdir, curl, tar, etc.). Ensure that you're running these commands in the home dir of the new system user (`/home/githubrunner1`) under the proper security context: `sudo -u githubrunner1 <github_instructions_command>`.
 
 Once you have run the `config.sh` script to configure the runner, you will then execute the `run.sh` script and this runner should now be listening for jobs on this repository.
+
+## Running the runner
+
+Now that everything is setup, you can start the runner:
+
+```
+$ cd /home/githubrunner1/actions-runner
+$ sudo -u githubrunner1 ./run.sh
+```
+
+You should see the following prompt:
+
+```
+√ Connected to GitHub
+
+2021-09-25 13:09:18Z: Listening for Jobs
+```
