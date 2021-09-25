@@ -107,7 +107,6 @@ SSH into the runner VM. I recommend creating a system user for the runner proces
 
 ```
 $ sudo adduser githubrunner1 --system --group
-$ sudo usermod -aG sudo githubrunner1
 ```
 
 Ensure that `githubrunner1` system user can run the necessary commands with `sudo` and no password prompt (modify `/etc/sudoers` with `visudo`):
