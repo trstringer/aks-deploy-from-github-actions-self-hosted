@@ -113,7 +113,7 @@ $ sudo usermod -aG sudo githubrunner1
 Ensure that `githubrunner1` system user can run the necessary commands with `sudo` and no password prompt (modify `/etc/sudoers` with `visudo`):
 
 ```
-githubrunner1 ALL = NOPASSWD:/usr/bin/apt-get update, /usr/bin/apt-get upgrade, /usr/bin/apt-get install, /usr/sbin/usermod, /usr/bin/gpg, /usr/bin/tee
+githubrunner1 ALL = NOPASSWD:/usr/bin/apt-get, /usr/sbin/usermod, /usr/bin/gpg, /usr/bin/tee, /usr/bin/curl
 ```
 
 Follow the intructions on the **Create self-managed runner** page in the GitHub repository (mkdir, curl, tar, etc.). Ensure that you're running these commands in the home dir of the new system user (`/home/githubrunner1`) under the proper security context: `sudo -u githubrunner1 <github_instructions_command>`.
