@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-      - name: Install dependencies
-        run: ./install_runner_dependencies.sh
       - name: Build image
         env:
           ACR_NAME: ${{ secrets.ACR_NAME }}
