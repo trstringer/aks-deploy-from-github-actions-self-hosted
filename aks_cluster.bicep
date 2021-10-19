@@ -1,4 +1,4 @@
-param location string
+param location string = 'eastus'
 param clusterName string
 
 param nodeCount int = 1

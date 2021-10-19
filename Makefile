@@ -10,10 +10,11 @@ build:
 .PHONY: infrastructure
 infrastructure:
 	az login --identity
-	az deployment sub create \
-		--template-file ./aks_deployment.bicep \
+	az deployment group create \
+		--resource-group $(RESOURCE_NAME) \
+		--template-file ./aks_cluster.bicep \
 		--location eastus \
-		--parameters resourceName=$(RESOURCE_NAME)
+		--parameters clusterName=$(RESOURCE_NAME)
 	az aks update \
 		--resource-group $(RESOURCE_NAME) \
 		--name $(RESOURCE_NAME) \
