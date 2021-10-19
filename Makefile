@@ -1,15 +1,31 @@
 VERSION_FILE := version
 VERSION := $(shell cat ${VERSION_FILE})
-IMAGE_REPO := $(ACR_NAME).azurecr.io/upgrade-test
+RESOURCE_NAME ?= aksgithub1
+IMAGE_REPO := $(RESOURCE_NAME).azurecr.io/upgrade-test
 
 .PHONY: build
 build:
 	docker build -t $(IMAGE_REPO):$(VERSION) .
 
+.PHONY: infrastructure
+infrastructure:
+	az login --identity
+	az deployment sub create \
+		--template-file ./aks_deployment.bicep \
+		--location eastus \
+		--parameters resourceName=$(RESOURCE_NAME)
+	az aks update \
+		--resource-group $(RESOURCE_NAME) \
+		--name $(RESOURCE_NAME) \
+		--attach-acr $(RESOURCE_NAME)
+	az aks get-credentials \
+		--resource-group $(RESOURCE_NAME) \
+		--name $(RESOURCE_NAME)
+
 .PHONY: registry-login
 registry-login:
-	@az login --identity
-	@az acr login --name $(ACR_NAME)
+	az login --identity
+	az acr login --name $(RESOURCE_NAME)
 
 .PHONY: push
 push:
