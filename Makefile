@@ -13,7 +13,6 @@ infrastructure:
 	az deployment group create \
 		--resource-group $(RESOURCE_NAME) \
 		--template-file ./aks_cluster.bicep \
-		--location eastus \
 		--parameters clusterName=$(RESOURCE_NAME)
 	az aks update \
 		--resource-group $(RESOURCE_NAME) \
