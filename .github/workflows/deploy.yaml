@@ -15,6 +15,10 @@ jobs:
         env:
           RESOURCE_NAME: ${{ secrets.RESOURCE_NAME }}
         run: make build
+      - name: Create infrastructure
+        env:
+          RESOURCE_NAME: ${{ secrets.RESOURCE_NAME }}
+        run: make infrastructure
       - name: Login to container registry
         env:
           RESOURCE_NAME: ${{ secrets.RESOURCE_NAME }}
